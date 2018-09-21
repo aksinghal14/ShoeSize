@@ -46,11 +46,11 @@ public class ShoeSize3 {
         }
     }
 
-    static ShoeSize load(String FILENAME) {
+    static ShoeSize3 load(String FILENAME) {
         File f = new File(FILENAME);
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder;
-        ShoeSize shoeSize = new ShoeSize();
+        ShoeSize3 shoeSize = new ShoeSize3();
 
         try{
             documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -60,25 +60,24 @@ public class ShoeSize3 {
             NodeList nodeList = shoesize.getChildNodes();
             for (int i = 0;i< nodeList.getLength();i++) {
                 Node n = nodeList.item(i);
+                shoeSize.shoesize = Integer.parseInt((n.getTextContent()));
             }
-
-            // add code here that will load shoe size from a file called "FILENAME"
 
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (Exception e) {
-            System.err.println("problem loading"+ FILENAME);
+            System.err.println("problem "+ FILENAME);
         }
         return shoeSize;
     }
 
     void save(String FILENAME) {
         File f = new File(FILENAME);
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db;
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder;
         try{
-            db = dbf.newDocumentBuilder();
-            Document doc = db.newDocument();
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            Document doc = documentBuilder.newDocument();
 
             Element shoe = doc.createElement(SHOESIZEENAME );
             shoe.appendChild(doc.createTextNode(Integer.toString(this.shoesize)));
