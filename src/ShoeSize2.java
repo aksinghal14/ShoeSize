@@ -15,11 +15,9 @@ public class ShoeSize2 {
     public ShoeSize2() {
         shoesize = null;
     }
-
     public String show() {
         return (shoesize == null ? "" : shoesize.toString());
     }
-
     public boolean set(Integer v) {
         if (v == null || v >= ShoeSize.SHOESIZEMIN && v <= ShoeSize.SHOESIZEMAX) {
             shoesize = v;
@@ -32,36 +30,33 @@ public class ShoeSize2 {
     }
 
     static ShoeSize2 load() {
-        ShoeSize2 shoeSize = new ShoeSize2();
         // add code here that will load shoe size from a file called "FILENAME"
+        ShoeSize2 shoeSize = new ShoeSize2();
         if((new File(FILENAME)).exists()) {
             try {
-                ObjectInputStream ois = new ObjectInputStream(new FileInputStream(FILENAME));
+                ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(FILENAME));
 
-                shoeSize.set((Integer) ois.readObject());
-                ois.close();
+                shoeSize.set((Integer) objectInputStream.readObject());
+                objectInputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
-        // return new ShoeSize();
         return shoeSize;
     }
-
     void save() {
-
+        // add code here that will save shoe size into a file called "FILENAME"
             try {
-                ObjectOutputStream oos = new ObjectOutputStream(
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(
                         new FileOutputStream(FILENAME));
-                oos.writeObject(this.shoesize);
-                oos.close();
+                objectOutputStream.writeObject(this.shoesize);
+                objectOutputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
 
-        // add code here that will save shoe size into a file called "FILENAME"
     }
 }
