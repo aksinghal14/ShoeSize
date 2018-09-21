@@ -14,7 +14,7 @@ public class ShoeSize {
 
     static final String FILENAME = "shoesize.xml";
 
-    private Integer shoesize;
+    public Integer shoesize;
 
     public ShoeSize() {
         shoesize = null;
