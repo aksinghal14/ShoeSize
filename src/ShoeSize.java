@@ -47,14 +47,15 @@ public class ShoeSize {
             FileReader fileReader = new FileReader("data");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             System.out.println("read data");
-            char[] buf = new char[1000];
-            bufferedReader.read(buf, 0, 1000);
+            char[] buff = new char[1000];
+            bufferedReader.read(buff, 0, 1000);
             String data = "";
-            for (char c : buf){
+            for (char c : buff){
                 data += c;
             }
-            System.out.println("data is " + data);
-            System.out.println("close file");
+
+            System.out.println("data" + data);
+            System.out.println("close");
             bufferedReader.close();
             Integer value = Integer.parseInt(ShoeSize.decode(data)[0]);
             result.set(value);
@@ -72,7 +73,7 @@ public class ShoeSize {
             try {
             FileWriter fileWriter = new FileWriter(filename);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            System.out.println("save data: " + this.shoesize);
+            System.out.println("save: " + this.shoesize);
             bufferedWriter.write(this.encode(this.shoesize==null ? null : this.shoesize));
             bufferedWriter.close();
         }
